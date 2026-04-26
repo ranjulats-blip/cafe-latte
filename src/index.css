@@ -88,8 +88,8 @@
   .bg-radial-warm { background: var(--gradient-radial); }
 
   .glass {
-    background: hsl(var(--cream) / 0.04);
-    border: 1px solid hsl(var(--cream) / 0.08);
+    background: hsl(var(--cream) / 0.06);
+    border: 1px solid hsl(var(--cream) / 0.12);
     backdrop-filter: blur(12px);
   }
 
