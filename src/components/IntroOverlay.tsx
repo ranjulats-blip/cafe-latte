@@ -1,9 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 
-export function IntroOverlay() {
+interface IntroOverlayProps {
+  onReveal?: () => void;
+}
+
+export function IntroOverlay({ onReveal }: IntroOverlayProps) {
   const [show, setShow] = useState(true);
   const [fading, setFading] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const finishedRef = useRef(false);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -19,12 +24,15 @@ export function IntroOverlay() {
   }, []);
 
   const finish = () => {
-    if (fading) return;
+    if (finishedRef.current) return;
+    finishedRef.current = true;
     setFading(true);
+    // Trigger site fade-in immediately so they crossfade
+    onReveal?.();
     setTimeout(() => {
       setShow(false);
       document.body.style.overflow = "";
-    }, 1400);
+    }, 2500);
   };
 
   if (!show) return null;
@@ -32,7 +40,7 @@ export function IntroOverlay() {
   return (
     <div
       className={`fixed inset-0 z-[9999] bg-background flex items-center justify-center transition-opacity ease-in-out ${
-        fading ? "opacity-0 duration-[1400ms]" : "opacity-100 duration-300"
+        fading ? "opacity-0 duration-[2500ms]" : "opacity-100 duration-300"
       }`}
       style={{ pointerEvents: fading ? "none" : "auto" }}
     >

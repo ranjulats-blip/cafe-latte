@@ -12,6 +12,7 @@ import { IntroOverlay } from "@/components/IntroOverlay";
 
 const Index = () => {
   const [content, setContent] = useState<Record<string, any>>({});
+  const [siteVisible, setSiteVisible] = useState(false);
 
   useEffect(() => {
     document.title = "Café Latté — Find Your Corner. Sip Your Story.";
@@ -32,17 +33,23 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
-      <main>
-        <Hero content={content.hero} />
-        <MenuSection />
-        <OrderSection />
-        <ReserveSection />
-        <InfoSection info={content.info} />
-      </main>
-      <Footer />
-      <AmbientSound />
-      <IntroOverlay />
+      <div
+        className={`transition-opacity ease-in-out duration-[2500ms] ${
+          siteVisible ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <Navbar />
+        <main>
+          <Hero content={content.hero} />
+          <MenuSection />
+          <OrderSection />
+          <ReserveSection />
+          <InfoSection info={content.info} />
+        </main>
+        <Footer />
+        <AmbientSound />
+      </div>
+      <IntroOverlay onReveal={() => setSiteVisible(true)} />
     </div>
   );
 };
