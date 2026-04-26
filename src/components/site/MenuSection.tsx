@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 type Section = { id: string; slug: string; name: string; icon: string | null };
-type Item = { id: string; section_id: string; name: string; description: string | null; price: number; emoji: string | null; tag: string | null };
+type Item = { id: string; section_id: string; name: string; description: string | null; price: number; emoji: string | null; tag: string | null; image_url: string | null };
 
 export function MenuSection() {
   const [sections, setSections] = useState<Section[]>([]);
@@ -47,18 +47,34 @@ export function MenuSection() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {visible.map(item => (
-          <div key={item.id} className="relative overflow-hidden glass rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-[var(--shadow-card)] group">
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-primary/10 to-transparent pointer-events-none" />
-            <div className="text-3xl mb-3">{item.emoji || "🍽️"}</div>
-            <h3 className="font-display text-lg font-bold text-cream mb-1.5">{item.name}</h3>
-            <p className="text-sm text-cream/45 leading-relaxed mb-4 min-h-[2.5rem]">{item.description}</p>
-            <div className="flex items-center justify-between">
-              <span className="font-numeric text-2xl text-primary tracking-wide">₹{Number(item.price).toFixed(0)}</span>
+          <div key={item.id} className="relative overflow-hidden glass rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-[var(--shadow-card)] group flex flex-col">
+            <div className="relative aspect-[4/3] overflow-hidden bg-cream/5">
+              {item.image_url ? (
+                <img
+                  src={item.image_url}
+                  alt={item.name}
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-6xl">{item.emoji || "🍽️"}</div>
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/0 to-transparent pointer-events-none" />
               {item.tag && (
-                <span className="text-[0.65rem] px-2.5 py-1 rounded-full bg-amber/10 text-amber uppercase tracking-[0.1em]">
+                <span className="absolute top-3 right-3 text-[0.65rem] px-2.5 py-1 rounded-full bg-amber/90 text-background uppercase tracking-[0.1em] font-semibold backdrop-blur-sm">
                   {item.tag}
                 </span>
               )}
+            </div>
+            <div className="p-6 flex-1 flex flex-col">
+              <h3 className="font-display text-lg font-bold text-cream mb-1.5 flex items-center gap-2">
+                <span>{item.emoji}</span>{item.name}
+              </h3>
+              <p className="text-sm text-cream/45 leading-relaxed mb-4 flex-1">{item.description}</p>
+              <div className="flex items-center justify-between">
+                <span className="font-numeric text-2xl text-primary tracking-wide">₹{Number(item.price).toFixed(0)}</span>
+              </div>
             </div>
           </div>
         ))}
