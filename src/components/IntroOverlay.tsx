@@ -1,42 +1,40 @@
 import { useEffect, useRef, useState } from "react";
 
-const STORAGE_KEY = "cafe-latte-intro-seen";
-
 export function IntroOverlay() {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const [fading, setFading] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Only show once per session
-    if (sessionStorage.getItem(STORAGE_KEY)) return;
-    setShow(true);
-    sessionStorage.setItem(STORAGE_KEY, "1");
     document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, []);
 
   useEffect(() => {
-    if (!show) return;
     const v = videoRef.current;
     if (!v) return;
     v.play().catch(() => finish());
-  }, [show]);
+  }, []);
 
   const finish = () => {
+    if (fading) return;
     setFading(true);
     setTimeout(() => {
       setShow(false);
       document.body.style.overflow = "";
-    }, 800);
+    }, 1400);
   };
 
   if (!show) return null;
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] bg-background flex items-center justify-center transition-opacity duration-700 ${
-        fading ? "opacity-0" : "opacity-100"
+      className={`fixed inset-0 z-[9999] bg-background flex items-center justify-center transition-opacity ease-in-out ${
+        fading ? "opacity-0 duration-[1400ms]" : "opacity-100 duration-300"
       }`}
+      style={{ pointerEvents: fading ? "none" : "auto" }}
     >
       <video
         ref={videoRef}
