@@ -8,43 +8,43 @@
 
 @layer base {
   :root {
-    /* Brand */
-    --background: 24 70% 3%;          /* #0D0803 */
-    --foreground: 40 56% 90%;         /* cream */
-    --cream: 40 56% 90%;              /* #F5ECD7 */
-    --soft-white: 40 50% 96%;
-    --warm-brown: 27 51% 24%;
-    --espresso: 26 50% 11%;           /* #2C1A0E */
-    --latte: 30 49% 58%;              /* #C8955E */
-    --gold: 39 58% 58%;               /* #D4A853 */
-    --neon-amber: 32 100% 64%;        /* #FFB347 */
+    /* Brand — boosted contrast, same warm café vibe */
+    --background: 24 75% 2%;          /* deeper near-black for stronger contrast */
+    --foreground: 40 70% 95%;         /* brighter cream for readability */
+    --cream: 40 70% 95%;              /* brighter cream */
+    --soft-white: 40 60% 98%;
+    --warm-brown: 27 55% 28%;
+    --espresso: 26 55% 9%;            /* slightly darker espresso */
+    --latte: 32 70% 65%;              /* warmer, more saturated latte */
+    --gold: 40 80% 62%;               /* richer, brighter gold */
+    --neon-amber: 32 100% 66%;
 
-    --card: 24 60% 5%;
-    --card-foreground: 40 56% 90%;
-    --popover: 24 70% 4%;
-    --popover-foreground: 40 56% 90%;
+    --card: 24 65% 4%;
+    --card-foreground: 40 70% 95%;
+    --popover: 24 75% 3%;
+    --popover-foreground: 40 70% 95%;
 
-    --primary: 30 49% 58%;            /* latte */
-    --primary-foreground: 26 50% 11%; /* espresso */
-    --secondary: 26 50% 11%;
-    --secondary-foreground: 40 56% 90%;
-    --muted: 26 30% 14%;
-    --muted-foreground: 40 30% 65%;
-    --accent: 39 58% 58%;             /* gold */
-    --accent-foreground: 26 50% 11%;
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 40 56% 96%;
-    --border: 30 30% 18%;
-    --input: 30 25% 16%;
-    --ring: 30 49% 58%;
+    --primary: 32 75% 62%;            /* punchier latte/gold for CTA */
+    --primary-foreground: 26 60% 8%;  /* dark espresso for max contrast on gold */
+    --secondary: 26 55% 9%;
+    --secondary-foreground: 40 70% 95%;
+    --muted: 26 35% 13%;
+    --muted-foreground: 40 45% 78%;   /* lifted muted text for readability */
+    --accent: 40 80% 62%;              /* gold */
+    --accent-foreground: 26 60% 8%;
+    --destructive: 0 78% 55%;
+    --destructive-foreground: 40 70% 97%;
+    --border: 30 35% 22%;              /* more visible borders */
+    --input: 30 30% 18%;
+    --ring: 32 75% 62%;
     --radius: 0.875rem;
 
     /* Gradients */
     --gradient-gold: linear-gradient(135deg, hsl(var(--latte)), hsl(var(--gold)));
-    --gradient-night: linear-gradient(180deg, hsl(24 70% 3%) 0%, hsl(26 50% 6%) 50%, hsl(24 70% 3%) 100%);
-    --gradient-radial: radial-gradient(ellipse at 30% 50%, hsl(var(--latte) / 0.15) 0%, transparent 60%),
-                       radial-gradient(ellipse at 80% 20%, hsl(var(--gold) / 0.1) 0%, transparent 50%),
-                       linear-gradient(135deg, hsl(24 70% 3%) 0%, hsl(26 50% 6%) 50%, hsl(24 70% 3%) 100%);
+    --gradient-night: linear-gradient(180deg, hsl(24 75% 2%) 0%, hsl(26 55% 5%) 50%, hsl(24 75% 2%) 100%);
+    --gradient-radial: radial-gradient(ellipse at 30% 50%, hsl(var(--latte) / 0.22) 0%, transparent 60%),
+                       radial-gradient(ellipse at 80% 20%, hsl(var(--gold) / 0.16) 0%, transparent 50%),
+                       linear-gradient(135deg, hsl(24 75% 2%) 0%, hsl(26 55% 5%) 50%, hsl(24 75% 2%) 100%);
 
     /* Shadows */
     --shadow-glow: 0 8px 32px hsl(var(--latte) / 0.3);
@@ -88,8 +88,8 @@
   .bg-radial-warm { background: var(--gradient-radial); }
 
   .glass {
-    background: hsl(var(--cream) / 0.04);
-    border: 1px solid hsl(var(--cream) / 0.08);
+    background: hsl(var(--cream) / 0.06);
+    border: 1px solid hsl(var(--cream) / 0.12);
     backdrop-filter: blur(12px);
   }
 
