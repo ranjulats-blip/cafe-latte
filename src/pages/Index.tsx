@@ -8,6 +8,7 @@ import { ReserveSection } from "@/components/site/ReserveSection";
 import { InfoSection } from "@/components/site/InfoSection";
 import { Footer } from "@/components/site/Footer";
 import { AmbientSound } from "@/components/AmbientSound";
+import { IntroOverlay } from "@/components/IntroOverlay";
 
 const Index = () => {
   const [content, setContent] = useState<Record<string, any>>({});
@@ -41,6 +42,7 @@ const Index = () => {
       </main>
       <Footer />
       <AmbientSound />
+      <IntroOverlay />
     </div>
   );
 };
