@@ -41,8 +41,8 @@ export function Navbar() {
 
       <div className="flex items-center gap-2">
         {isAdmin && (
-          <Button variant="ghost" size="sm" onClick={() => nav("/admin")} className="text-primary hidden sm:inline-flex">
-            <Shield className="w-4 h-4 mr-1" /> Admin
+          <Button variant="ghost" size="sm" onClick={() => nav("/admin")} className="text-primary">
+            <Shield className="w-4 h-4 mr-1" /> <span className="hidden sm:inline">Admin</span>
           </Button>
         )}
         {user ? (
